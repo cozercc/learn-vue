@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import { reactive } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
+
+const state = reactive({ count: 0 });
+
+function increment() {
+  state.count++;
+}
 </script>
 
 <template>
@@ -20,6 +27,9 @@ import HelloWorld from "./components/HelloWorld.vue";
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <div>
+        <button @click="increment">{{ state.count }}</button>
+      </div>
     </div>
   </header>
 
