@@ -1,12 +1,27 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
-const state = reactive({ count: 0 });
+const test = ref(true);
 
 function increment() {
-  state.count++;
+  test.value = !test.value;
+}
+
+const myObject = reactive({
+  title: "How to do lists in Vue",
+  author: "Jane Doe",
+  publishedAt: "2016-04-10",
+});
+
+const name = ref("Vue.js");
+
+function greet(event) {
+  alert(`hello ${name.value}`);
+  if (event) {
+    alert(event.target.tagName);
+  }
 }
 </script>
 
@@ -28,8 +43,16 @@ function increment() {
         <RouterLink to="/about">About</RouterLink>
       </nav>
       <div>
-        <button @click="increment">{{ state.count }}</button>
+        <button @click="increment">{{ test }}</button>
+        <button @click="greet">Greet</button>
       </div>
+      <p v-if="test">YES</p>
+      <p v-else>NO</p>
+      <ul>
+        <li v-for="(value, key, index) in myObject">
+          {{ key }} : {{ value }} : {{ index }}
+        </li>
+      </ul>
     </div>
   </header>
 
