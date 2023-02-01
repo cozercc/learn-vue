@@ -2,31 +2,33 @@
 import { ref } from "vue";
 
 const message = ref("Hello World");
+const isRed = ref(true);
+const color = ref("green");
 
-function reverseMessage() {
-    message.value = message.value.split("").reverse().join("");
+function toggleRed() {
+    isRed.value = !isRed.value;
 }
 
-function notify() {
-    alert("WTF");
+function toggleColor() {
+    color.value = color.value === "green" ? "blue" : "green";
 }
 </script>
 
 <template>
-    <h1>{{ message }}</h1>
+    <p>
+        <span v-bind:title="message"> add span title </span>
+    </p>
 
-    <button @click="reverseMessage">Reverse Message</button>
+    <p :class="{ red: isRed }" @click="toggleRed">
+        This should be red... but click me to toggle it.
+    </p>
 
-    <button v-on:click="notify">alert</button>
-
-    <button @click="message += 666">@click="message += 666"</button>
-
-    <button @click="message = 'First'">Clear All</button>
-
-    <a href="https://vuejs.org" @click.prevent="notify">
-        A link with e.preventDefault()
-    </a>
+    <p :style="{ color }" @click="toggleColor">
+        This should be green, and should toggle between green and blue on click.
+    </p>
 </template>
 <style>
-
+.red {
+    color: red;
+}
 </style>
