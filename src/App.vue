@@ -3,32 +3,6 @@ import { RouterLink, RouterView } from "vue-router";
 import { reactive, ref, onMounted } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Demo from "./components/Demo.vue";
-
-const foo = reactive({ count: 0 });
-
-const test = ref(true);
-
-function increment() {
-    test.value = !test.value;
-}
-
-const myObject = reactive({
-    title: "How to do lists in Vue",
-    author: "Jane Doe",
-    publishedAt: "2016-04-10",
-});
-
-const name = ref("Vue.js");
-
-const checked = ref(true);
-
-function greet(message) {
-    alert(`hello ${message}`);
-}
-
-onMounted(() => {
-    console.log("123213");
-});
 </script>
 
 <template>
@@ -48,35 +22,10 @@ onMounted(() => {
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
             </nav>
-            <div>
-                <button @click="increment">{{ test }}</button>
-                <button @click.once="greet('111')">Greet</button>
-            </div>
-            <p v-if="test">YES</p>
-            <p v-else>NO</p>
-            <ul>
-                <li v-for="(value, key, index) in myObject">
-                    {{ key }} : {{ value }} : {{ index }}
-                </li>
-            </ul>
         </div>
     </header>
 
     <!-- <RouterView /> -->
-    <p>Message is: {{ foo.count }}</p>
-    <input v-model="foo.count" />
-
-    <p>Message is: {{ foo.count }}</p>
-    <input v-model="foo.count" />
-
-    <input
-        type="checkbox"
-        id="checkbox"
-        v-model="checked"
-        true-value="yes"
-        false-value="no"
-    />
-    <label for="checkbox">{{ checked }}</label>
 
     <!-- 示例 -->
     <Demo />
