@@ -1,19 +1,20 @@
 <script setup>
-defineProps({
-    firstName: String,
-    lastName: String,
+const props = defineProps({
+    modelValue: String,
+    modelModifiers: { default: () => ({}) },
 });
-defineEmits(["update:firstName", "update:lastName"]);
+const emit = defineEmits(["update:modelValue"]);
+
+function emitValue(e) {
+    let value = e.target.value;
+    if (props.modelModifiers.capitalize) {
+        value = value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    emit("update:modelValue", value);
+}
 </script>
 
 <template>
-    <input
-        :value="firstName"
-        @input="$emit('update:firstName', $event.target.value)"
-    />
-    <input
-        :value="lastName"
-        @input="$emit('update:lastName', $event.target.value)"
-    />
+    <input type="text" :value="modelValue" @input="emitValue" />
 </template>
 <style></style>
