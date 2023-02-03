@@ -1,12 +1,19 @@
 <script setup>
-defineProps(["modelValue"]);
-defineEmits(["update:modelValue"]);
+defineProps({
+    firstName: String,
+    lastName: String,
+});
+defineEmits(["update:firstName", "update:lastName"]);
 </script>
 
 <template>
     <input
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :value="firstName"
+        @input="$emit('update:firstName', $event.target.value)"
+    />
+    <input
+        :value="lastName"
+        @input="$emit('update:lastName', $event.target.value)"
     />
 </template>
 <style></style>
