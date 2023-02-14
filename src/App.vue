@@ -3,20 +3,20 @@ import { RouterLink, RouterView } from "vue-router";
 import { reactive, ref, onMounted } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import Demo from "./components/Demo.vue";
+
+const posts = ref([
+    { id: 1, title: 'My journey with Vue' },
+    { id: 2, title: 'Blogging with Vue' },
+    { id: 3, title: 'Why Vue is so fun' }
+]);
 </script>
 
 <template>
     <header>
-        <img
-            alt="Vue logo"
-            class="logo"
-            src="@/assets/logo.svg"
-            width="125"
-            height="125"
-        />
+        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
         <div class="wrapper">
-            <HelloWorld msg="You did it!" />
+            <HelloWorld msg="Hello Vue" />
 
             <nav>
                 <RouterLink to="/">Home</RouterLink>
@@ -28,7 +28,10 @@ import Demo from "./components/Demo.vue";
     <!-- <RouterView /> -->
 
     <!-- 示例 -->
-    <Demo />
+    <Demo 
+    v-for="post in posts"
+    :fontSize="post.title" 
+    />
 </template>
 
 <style scoped>
