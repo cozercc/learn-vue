@@ -9,6 +9,20 @@ const posts = ref([
     { id: 2, title: 'Blogging with Vue' },
     { id: 3, title: 'Why Vue is so fun' }
 ]);
+const postFontSize = ref(1);
+
+const objectOfAttrs = {
+    id: 'container',
+    class: 'wrapper'
+};
+
+const state = reactive({ count: 0 });
+
+function increment() {
+    state.count++;
+    
+}
+
 </script>
 
 <template>
@@ -24,14 +38,18 @@ const posts = ref([
             </nav>
         </div>
     </header>
-
+    <div v-bind="objectOfAttrs">11</div>
     <!-- <RouterView /> -->
 
     <!-- 示例 -->
-    <Demo 
-    v-for="post in posts"
-    :fontSize="post.title" 
-    />
+    <div :style="{ fontSize: postFontSize + 'em' }">
+        <Demo v-for="post in posts" :fontSize="post.title" @enlarge-text="postFontSize += 0.1" />
+    </div>
+    <div>
+        <button @click="increment">
+            {{ state.count }}
+        </button>
+    </div>
 </template>
 
 <style scoped>
